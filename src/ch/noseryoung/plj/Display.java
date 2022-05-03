@@ -23,6 +23,9 @@ public class Display extends JFrame {
         this.setSize(1000, 600);
     }
 
-    // TODO: Add a layout to the frame and add the components to the frame
-    private void createFrame(){}
+    private void createFrame(){
+        this.setLayout(new BorderLayout());
+        this.add(score, BorderLayout.NORTH);
+        this.add(snake, BorderLayout.CENTER);
+    }
 }

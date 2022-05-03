@@ -28,6 +28,7 @@ public class Snake extends JPanel implements ActionListener {
     private int[][] snake;
     private int[] apple;
 
+
     public Snake(Score score) {
         this.setBackground(Color.black);
         this.setFocusable(true);
@@ -42,13 +43,37 @@ public class Snake extends JPanel implements ActionListener {
         startGame();
     }
 
-    // TODO: Add a game over text to the panel using graphics
-    private void gameOver(Graphics g) {}
+    private void gameOver(Graphics g) {
+        g.setColor(appleColor);
 
-    // TODO: Add the snake and the apple to the panel using graphics
+        g.setFont(new Font("Ink Free", Font.BOLD, 50));
+        FontMetrics metrics = getFontMetrics(g.getFont());
+        g.drawString("Game Over",
+                (this.getWidth() - metrics.stringWidth("Game Over")) / 2,
+                this.getHeight() / 2);
+
+        g.setFont(new Font("Ink Free", Font.BOLD, 20));
+        metrics = getFontMetrics(g.getFont());
+        g.drawString("Press enter to play again",
+                (this.getWidth() - metrics.stringWidth("Press enter to play again")) / 2,
+                this.getHeight() / 2 + 50);
+    }
+
     private void drawField(Graphics g) {
-        int unitWidth = this.getWidth() / AMOUNT_FIELD_BLOCK_WIDTH;
-        int unitHeight = this.getHeight() / AMOUNT_FIELD_BLOCK_HEIGHT;
+        int width = this.getWidth() / AMOUNT_FIELD_BLOCK_WIDTH;
+        int height = this.getHeight() / AMOUNT_FIELD_BLOCK_HEIGHT;
+
+        g.setColor(headColor);
+        for (int i = 0; i < snake.length; i++) {
+            g.fillRect(snake[i][0] * this.getWidth() / AMOUNT_FIELD_BLOCK_WIDTH,
+                    snake[i][1] * this.getHeight() / AMOUNT_FIELD_BLOCK_HEIGHT, width, height);
+            if (i == 0) {
+                g.setColor(bodyColor);
+            }
+        }
+
+        g.setColor(appleColor);
+        g.fillOval(apple[0] * this.getWidth() / AMOUNT_FIELD_BLOCK_WIDTH, apple[1] * this.getHeight() / AMOUNT_FIELD_BLOCK_HEIGHT, width, height);
 
     }
 
