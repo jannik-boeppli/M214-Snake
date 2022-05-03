@@ -42,8 +42,21 @@ public class Snake extends JPanel implements ActionListener {
         startGame();
     }
 
-    // TODO: Add a game over text to the panel using graphics
-    private void gameOver(Graphics g) {}
+    private void gameOver(Graphics g) {
+        g.setColor(appleColor);
+
+        g.setFont(new Font("Ink Free", Font.BOLD, 50));
+        FontMetrics metrics = getFontMetrics(g.getFont());
+        g.drawString("Game Over",
+                (this.getWidth() - metrics.stringWidth("Game Over")) / 2,
+                this.getHeight() / 2);
+
+        g.setFont(new Font("Ink Free", Font.BOLD, 20));
+        metrics = getFontMetrics(g.getFont());
+        g.drawString("Press enter to play again",
+                (this.getWidth() - metrics.stringWidth("Press enter to play again")) / 2,
+                this.getHeight() / 2 + 50);
+    }
 
     // TODO: Add the snake and the apple to the panel using graphics
     private void drawField(Graphics g) {
