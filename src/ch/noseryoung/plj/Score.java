@@ -10,8 +10,19 @@ public class Score extends JPanel {
     private JLabel scoreLabel;
     private JLabel highScoreLabel;
 
-    // TODO: Add a layout to the panel and add the labels to it
-    public Score() {}
+    public Score() {
+        scoreLabel = new JLabel("Score: " + score, SwingConstants.CENTER);
+        scoreLabel.setForeground(Color.red);
+
+        highScoreLabel = new JLabel("High Score: " + highScore, SwingConstants.CENTER);
+        highScoreLabel.setForeground(Color.red);
+
+        this.setBackground(Color.DARK_GRAY);
+
+        this.setLayout(new GridLayout());
+        this.add(scoreLabel);
+        this.add(highScoreLabel);
+    }
 
     public int getScore() {
         return score;
